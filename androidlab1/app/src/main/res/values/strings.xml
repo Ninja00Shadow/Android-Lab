@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">androidlab1</string>
+    <string name="txt1">My 1st app!</string>
+    <string name="txt2">Activity 2</string>
+    <string name="txt3">Activity 3</string>
+    <string name="txt4">Activity 4</string>
+    <string name="txt5">Activity 3(listener)</string>
+    <string name="txt6">Back</string>
+    <string name="txt7">...or press and hold the screen</string>
+    <string name="txt8">Run Dialer</string>
+    <string name="txt9">Enter phone number</string>
+    <string name="txt10">Value 1</string>
+    <string name="txt11">Value 2</string>
+    <string name="txt12">Calculate</string>
+    <string name="txt13">Result</string>
+    <string name="txt14">Here result</string>
+    <string name="txt15">Add</string>
+    <string name="txt16">Subtract</string>
+    <string name="txt17">Multiply</string>
+    <string name="long_text">Nocne przejażdżki oferują wyjątkową okazję do odkrywania świata z zupełnie innej perspektywy. Gdy słońce zachodzi, a światło miasta zaczyna migotać, otoczenie przybiera nowy charakter, pełen fascynującej piękności i ujmujących przygód.</string>
+    <string name="checkbox_text">Wybierz co ma być napisane:</string>
+    <string name="radiobutton_text">Wybierz jak ma być wypisane</string>
+    <string name="checkbox_funny_text">Funny</string>
+    <string name="checkbox_meme_text">Meme</string>
+    <string name="radiobutton_toast">Toast</string>
+    <string name="radiobutton_textview">TextView</string>
+    <string name="placeholder_text">Placeholder</string>
+    <string name="show_text">Pokaż</string>
+
+</resources>

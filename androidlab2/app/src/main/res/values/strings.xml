@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">androidlab2</string>
+    <string name="fullName">Dawid Walkiewicz</string>
+    <string name="font_size_14sp">Font Size 14sp</string>
+    <string name="font_size_20sp">Font Size 20sp</string>
+    <string name="font_size_30sp">Font Size 30sp</string>
+    <string name="font_style_normal">Font style: normal</string>
+    <string name="font_style_bold">Font style: bold</string>
+    <string name="font_style_italic">Font style: italic</string>
+    <string name="font_color_black">Font Color: Black</string>
+    <string name="font_color_red">Font Color: Red</string>
+    <string name="font_color_blue">Font Color: Blue</string>
+    <string name="goto_trail_text">Mountain trail</string>
+    <string name="red_trail_theme">Red trail</string>
+    <string name="green_trail_theme">Green trail</string>
+    <string name="blue_trail_theme">Blue trail</string>
+    <string name="return_text">Return</string>
+    <string name="trail_text">Rozciągający się od gór po niziny, Polski Szlak Niemcowa obejmuje różnorodne tereny, takie jak górskie szczyty,
+        malownicze doliny, czy zielone pola. Podróżujący tą trasą mają okazję odkrywać tradycyjne wioski, zabytkowe kościoły,
+        i inne historyczne miejsca, które świadczą o długiej historii i kulturze regionu.
+        Ponadto, Szlak Niemcowa zazwyczaj oferuje również możliwość skosztowania lokalnych przysmaków i doświadczenia tradycyjnej
+        kuchni polskiej. Przyjazna atmosfera miejscowych społeczności, z którymi można się spotkać w trakcie podróży, sprawia, że to nie
+        tylko wędrówka przez krajobrazy, ale także szansa na spotkanie ludzi, którzy z pasją dzielą się historią i dziedzictwem swojego regionu.</string>
+    <string name="main_name">Laboratorium 2</string>
+    <string name="light_theme_text">Light Theme</string>
+    <string name="dark_theme_text">Dark Theme</string>
+</resources>

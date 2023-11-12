@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/font_size_14sp"
+            android:title="@string/font_size_14sp" />
+        <item
+            android:id="@+id/font_size_20sp"
+            android:title="@string/font_size_20sp" />
+        <item
+            android:id="@+id/font_size_30sp"
+            android:title="@string/font_size_30sp" />
+    </group>
+
+</menu>

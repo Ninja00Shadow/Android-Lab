@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/red_trail_theme"
+        android:title="@string/red_trail_theme" />
+
+    <item
+        android:id="@+id/green_trail_theme"
+        android:title="@string/green_trail_theme" />
+
+    <item
+        android:id="@+id/blue_trail_theme"
+        android:title="@string/blue_trail_theme" />
+
+</menu>

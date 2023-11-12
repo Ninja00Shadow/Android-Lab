@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/font_style_normal"
+            android:title="@string/font_style_normal" />
+        <item
+            android:id="@+id/font_style_bold"
+            android:title="@string/font_style_bold" />
+        <item
+            android:id="@+id/font_style_italic"
+            android:title="@string/font_style_italic" />
+    </group>
+
+</menu>
