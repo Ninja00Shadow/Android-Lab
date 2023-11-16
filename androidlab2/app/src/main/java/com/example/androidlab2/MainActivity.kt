@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
 
         applyTheme()
 
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
@@ -57,18 +57,9 @@ class MainActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("prefs", MODE_PRIVATE)
 
         when (prefs.getInt("theme", 0)) {
-            0 -> {
-                setTheme(R.style.ThemeLight)
-                theme.applyStyle(R.style.ThemeLight, true)
-            }
-            1 -> {
-                setTheme(R.style.ThemeDark)
-                theme.applyStyle(R.style.ThemeDark, true)
-            }
-            else -> {
-                setTheme(R.style.ThemeLight)
-                theme.applyStyle(R.style.ThemeLight, true)
-            }
+            0 -> setTheme(R.style.Theme_Androidlab2)
+            1 -> setTheme(R.style.Theme_Androidlab2_Dark)
+            else -> setTheme(R.style.Theme_Androidlab2)
         }
     }
 

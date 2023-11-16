@@ -1,7 +1,31 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Androidlab2" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/cus_md_theme_dark_primary</item>
+        <item name="colorOnPrimary">@color/cus_md_theme_dark_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/cus_md_theme_dark_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/cus_md_theme_dark_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/cus_md_theme_dark_secondary</item>
+        <item name="colorOnSecondary">@color/cus_md_theme_dark_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/cus_md_theme_dark_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/cus_md_theme_dark_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/cus_md_theme_dark_tertiary</item>
+        <item name="colorOnTertiary">@color/cus_md_theme_dark_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/cus_md_theme_dark_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/cus_md_theme_dark_onTertiaryContainer</item>
+        <item name="colorError">@color/cus_md_theme_dark_error</item>
+        <item name="colorErrorContainer">@color/cus_md_theme_dark_errorContainer</item>
+        <item name="colorOnError">@color/cus_md_theme_dark_onError</item>
+        <item name="colorOnErrorContainer">@color/cus_md_theme_dark_onErrorContainer</item>
+        <item name="android:colorBackground">@color/cus_md_theme_dark_background</item>
+        <item name="colorOnBackground">@color/cus_md_theme_dark_onBackground</item>
+        <item name="colorSurface">@color/cus_md_theme_dark_surface</item>
+        <item name="colorOnSurface">@color/cus_md_theme_dark_onSurface</item>
+        <item name="colorSurfaceVariant">@color/cus_md_theme_dark_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/cus_md_theme_dark_onSurfaceVariant</item>
+        <item name="colorOutline">@color/cus_md_theme_dark_outline</item>
+        <item name="colorOnSurfaceInverse">@color/cus_md_theme_dark_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/cus_md_theme_dark_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/cus_md_theme_dark_inversePrimary</item>
     </style>
 </resources>

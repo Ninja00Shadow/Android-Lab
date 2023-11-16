@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +20,6 @@
             android:layout_height="?attr/actionBarSize"
             android:elevation="4dp"
             android:background="?attr/colorPrimary"
-            android:theme="?attr/theme"
             app:title="@string/main_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
