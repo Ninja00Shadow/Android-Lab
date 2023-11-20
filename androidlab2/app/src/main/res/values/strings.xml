@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">androidlab2</string>
     <string name="fullName">Dawid Walkiewicz</string>
-    <string name="font_size_14sp">Font Size 14sp</string>
-    <string name="font_size_20sp">Font Size 20sp</string>
-    <string name="font_size_30sp">Font Size 30sp</string>
+    <string name="font_size_14sp">Font Size: 14sp</string>
+    <string name="font_size_20sp">Font Size: 20sp</string>
+    <string name="font_size_30sp">Font Size: 30sp</string>
     <string name="font_style_normal">Font style: normal</string>
     <string name="font_style_bold">Font style: bold</string>
     <string name="font_style_italic">Font style: italic</string>

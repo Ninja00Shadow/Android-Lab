@@ -39,30 +39,30 @@ class TrailActivity : AppCompatActivity() {
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.hm_trail_theme, menu)
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        val inflater = menuInflater
+//        inflater.inflate(R.menu.hm_trail_theme, menu)
+//
+//        return true
+//    }
 
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.red_trail_theme -> {
-                chosenTheme = "red"
-            }
-            R.id.green_trail_theme -> {
-                chosenTheme = "green"
-            }
-            R.id.blue_trail_theme -> {
-                chosenTheme = "blue"
-            }
-        }
-
-        intent.putExtra("theme", chosenTheme)
-        recreate()
-        return true
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.red_trail_theme -> {
+//                chosenTheme = "red"
+//            }
+//            R.id.green_trail_theme -> {
+//                chosenTheme = "green"
+//            }
+//            R.id.blue_trail_theme -> {
+//                chosenTheme = "blue"
+//            }
+//        }
+//
+//        intent.putExtra("theme", chosenTheme)
+//        recreate()
+//        return true
+//    }
 
     private fun setTheme() {
         setTheme(

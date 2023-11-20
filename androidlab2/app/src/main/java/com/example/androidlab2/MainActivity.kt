@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
 
     private var fontSizeChecked = booleanArrayOf(true, false, false)
-    private var fontStyleChecked = booleanArrayOf(true, false, false)
+    private var fontStyleChecked = booleanArrayOf(false, false)
     private var fontColorChecked = booleanArrayOf(true, false, false)
 
     private var trailThemeStyle = "red"
@@ -121,59 +121,81 @@ class MainActivity : AppCompatActivity() {
                 fontSizeChecked = booleanArrayOf(true, false, false)
 
                 binding.fullNameTextView.textSize = 14f
+                binding.fontSizeTextView.text = "Font Size: 14sp"
                 return true
             }
             R.id.font_size_20sp -> {
                 fontSizeChecked = booleanArrayOf(false, true, false)
 
                 binding.fullNameTextView.textSize = 20f
+                binding.fontSizeTextView.text = "Font Size: 20sp"
                 return true
             }
             R.id.font_size_30sp -> {
                 fontSizeChecked = booleanArrayOf(false, false, true)
 
                 binding.fullNameTextView.textSize = 30f
-                return true
-            }
-            R.id.font_style_normal -> {
-                fontStyleChecked = booleanArrayOf(true, false, false)
-
-                binding.fullNameTextView.setTypeface(null, Typeface.NORMAL)
+                binding.fontSizeTextView.text = "Font Size: 30sp"
                 return true
             }
             R.id.font_style_bold -> {
-                fontStyleChecked = booleanArrayOf(false, true, false)
+                item.isChecked = !item.isChecked
+                fontStyleChecked[0] = !fontStyleChecked[0]
 
-                binding.fullNameTextView.setTypeface(null, Typeface.BOLD)
+
+                chooseTextStyle()
                 return true
             }
             R.id.font_style_italic -> {
-                fontStyleChecked = booleanArrayOf(false, false, true)
+                item.isChecked = !item.isChecked
+                fontStyleChecked[1] = !fontStyleChecked[1]
 
-                binding.fullNameTextView.setTypeface(null, Typeface.ITALIC)
+                chooseTextStyle()
                 return true
             }
             R.id.font_color_black -> {
                 fontColorChecked = booleanArrayOf(true, false, false)
 
                 binding.fullNameTextView.setTextColor(Color.BLACK)
+                binding.fontColorTextView.text = "Font Color: Black"
                 return true
             }
             R.id.font_color_red -> {
                 fontColorChecked = booleanArrayOf(false, true, false)
 
                 binding.fullNameTextView.setTextColor(Color.RED)
+                binding.fontColorTextView.text = "Font Color: Red"
                 return true
             }
             R.id.font_color_blue -> {
                 fontColorChecked = booleanArrayOf(false, false, true)
 
                 binding.fullNameTextView.setTextColor(Color.BLUE)
+                binding.fontColorTextView.text = "Font Color: Blue"
                 return true
             }
         }
 
         return super.onContextItemSelected(item)
+    }
+
+    private fun chooseTextStyle() {
+        if (fontStyleChecked[0] && fontStyleChecked[1]) {
+            binding.fullNameTextView.setTypeface(null, Typeface.BOLD_ITALIC)
+            binding.fontStyleTextView.text = "Font Style: Bold Italic"
+        }
+        if (fontStyleChecked[0] && !fontStyleChecked[1]) {
+            binding.fullNameTextView.setTypeface(null, Typeface.BOLD)
+            binding.fontStyleTextView.text = "Font Style: Bold"
+        }
+        else if (!fontStyleChecked[0] && fontStyleChecked[1]) {
+            binding.fullNameTextView.setTypeface(null, Typeface.ITALIC)
+            binding.fontStyleTextView.text = "Font Style: Italic"
+        }
+        else {
+            binding.fullNameTextView.setTypeface(null, Typeface.NORMAL)
+            binding.fontStyleTextView.text = "Font Style: Normal"
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
