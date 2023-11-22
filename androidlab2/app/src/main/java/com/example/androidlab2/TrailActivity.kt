@@ -20,7 +20,9 @@ class TrailActivity : AppCompatActivity() {
 
         chosenTheme = intent.getStringExtra("theme").toString()
 
-        setTheme()
+        applyTheme()
+
+//        setTheme()
 
         binding = ActivityTrailBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -36,6 +38,29 @@ class TrailActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
+    }
+
+    private fun applyTheme() {
+        val prefs = getSharedPreferences("prefs", MODE_PRIVATE)
+
+        setTheme(
+            when (prefs.getInt("theme", 0)) {
+                0 -> when (chosenTheme) {
+                    "red" -> R.style.RedTrailTheme
+                    "green" -> R.style.GreenTrailTheme
+                    "blue" -> R.style.BlueTrailTheme
+                    else -> R.style.RedTrailTheme
+                }
+                1 -> when (chosenTheme) {
+                    "red" -> R.style.RedTrailTheme_Dark
+                    "green" -> R.style.GreenTrailTheme_Dark
+                    "blue" -> R.style.BlueTrailTheme_Dark
+                    else -> R.style.RedTrailTheme_Dark
+                }
+                else -> R.style.RedTrailTheme
+            }
+        )
+
     }
 
 
@@ -64,14 +89,14 @@ class TrailActivity : AppCompatActivity() {
 //        return true
 //    }
 
-    private fun setTheme() {
-        setTheme(
-            when (chosenTheme) {
-                "red" -> R.style.RedTrailTheme
-                "green" -> R.style.GreenTrailTheme
-                "blue" -> R.style.BlueTrailTheme
-                else -> R.style.RedTrailTheme
-            }
-        )
-    }
+//    private fun setTheme() {
+//        setTheme(
+//            when (chosenTheme) {
+//                "red" -> R.style.RedTrailTheme
+//                "green" -> R.style.GreenTrailTheme
+//                "blue" -> R.style.BlueTrailTheme
+//                else -> R.style.RedTrailTheme
+//            }
+//        )
+//    }
 }
