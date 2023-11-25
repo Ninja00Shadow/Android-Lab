@@ -5,27 +5,50 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioGroup
+import androidx.fragment.app.FragmentTransaction
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val TAG_FD = "FragmentDog"
+private const val TAG_FC = "FragmentCat"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MainFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class MainFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class MainFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
+
+    private lateinit var dogFragment: DogFragment
+    private lateinit var catFragment: CatFragment
+    private lateinit var myTransaction: FragmentTransaction
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
+        if (savedInstanceState == null) {
+            dogFragment = DogFragment.newInstance()
+            catFragment = CatFragment.newInstance()
+
+            myTransaction = childFragmentManager.beginTransaction()
+            myTransaction.add(R.id.dynamicFragmentContainer, dogFragment, TAG_FD)
+            myTransaction.detach(dogFragment)
+            myTransaction.add(R.id.dynamicFragmentContainer, catFragment, TAG_FC)
+            myTransaction.detach(catFragment)
+            myTransaction.commit()
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val radioGroup = requireActivity().findViewById<RadioGroup>(R.id.animalChoiceRadioGroup)
+
+        if (savedInstanceState != null) {
+            dogFragment = childFragmentManager.findFragmentByTag(TAG_FD) as DogFragment
+            catFragment = childFragmentManager.findFragmentByTag(TAG_FC) as CatFragment
+        }
+
+        radioGroup.setOnCheckedChangeListener(this)
+
+        childFragmentManager.setFragmentResultListener("messageFromChild", this) { _, bundle ->
+            val result = bundle.getString("message")
+            val messageFromChildTextView = requireActivity().findViewById<android.widget.TextView>(R.id.resultTextView)
+            messageFromChildTextView.text = result
         }
     }
 
@@ -37,23 +60,19 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MainFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+        myTransaction = childFragmentManager.beginTransaction()
+        when (checkedId) {
+            R.id.dogButton -> {
+                myTransaction.detach(catFragment)
+                myTransaction.attach(dogFragment)
             }
+            R.id.catButton -> {
+                myTransaction.detach(dogFragment)
+                myTransaction.attach(catFragment)
+            }
+        }
+        myTransaction.addToBackStack(null)
+        myTransaction.commit()
     }
 }
