@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Android Lab 3</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dog_race_pitbul">Pitbul</string>
+    <string name="dog_race_jamnik">Sausage</string>
+    <string name="dog_race_golden_retriever">Golden Retriever</string>
+    <string name="fur_color_black">Black</string>
+    <string name="fur_color_brown">Brown</string>
+    <string name="fur_color_yellow">Yellow</string>
+    <string name="dog_race_text">Breed</string>
+    <string name="dog_fur_color_text">Fur color</string>
+    <string name="dog_name_text">Dog name</string>
+    <string name="enter_dog_name_hint">Enter dog name</string>
+    <string name="is_ribbed_text">Ribbed?</string>
+    <string name="cat_race_british_shorthair">British Shorthair</string>
+    <string name="cat_race_mixed">Mixed</string>
+    <string name="is_ribbed">Ribbed</string>
+    <string name="cat_race_egyptian">Egyptian Mau</string>
+    <string name="dog">Dog</string>
+    <string name="cat">Cat</string>
+    <string name="results_text">results here</string>
+    <string name="submit">Submit</string>
+</resources>
