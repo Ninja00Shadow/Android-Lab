@@ -21,4 +21,8 @@
     <string name="cat">Cat</string>
     <string name="results_text">results here</string>
     <string name="submit">Submit</string>
+    <string name="main_fragment">Main Fragment</string>
+    <string name="left_fragment">Left Fragment</string>
+    <string name="right_fragment">Right Fragment</string>
+    <string name="go_to_next_fragment">Go</string>
 </resources>

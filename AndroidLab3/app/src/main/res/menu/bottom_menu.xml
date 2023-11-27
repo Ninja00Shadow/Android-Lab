@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/leftFragment"
+        android:title="@string/left_fragment"
+        android:icon="@drawable/ic_left_arrow" />
+
+    <item
+        android:id="@+id/mainFragment"
+        android:title="@string/main_fragment"
+        android:icon="@drawable/ic_home"/>
+
+    <item
+        android:id="@+id/rightFragment"
+        android:title="@string/right_fragment"
+        android:icon="@drawable/ic_right_arrow" />
+
+</menu>

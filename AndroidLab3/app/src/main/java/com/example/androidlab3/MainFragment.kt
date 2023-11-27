@@ -31,6 +31,7 @@ class MainFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
             myTransaction.detach(catFragment)
             myTransaction.commit()
         }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
