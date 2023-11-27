@@ -6,11 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.CheckBox
 import android.widget.RadioGroup
 import android.widget.Switch
 
 class CatFragment : Fragment() {
+
+    private val items = listOf("Black", "Brown", "Yellow")
+    private lateinit var list : AutoCompleteTextView;
+    private lateinit var adapter : ArrayAdapter<String>;
+
+    private var chosenFurColor = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,12 +29,21 @@ class CatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cat, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        list = view.findViewById(R.id.furColorAutoCompleteTextView)
+        adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+        list.setAdapter(adapter)
+
+        list.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            val selectedItem = parent.getItemAtPosition(position).toString()
+            Log.i("CatFragment", "Selected: $selectedItem")
+            chosenFurColor = selectedItem
+        }
 
         val catSubmitButton = view.findViewById<View>(R.id.catSubmitButton)
 
@@ -48,16 +66,7 @@ class CatFragment : Fragment() {
             R.id.mixedButton -> "Mixed"
             else -> "Unknown"
         }
-        val furColor = when (view?.findViewById<CheckBox>(R.id.blackFurCheckBox)?.isChecked) {
-            true -> "Black"
-            else -> ""
-        } + " " + when (view?.findViewById<CheckBox>(R.id.brownFurCheckBox)?.isChecked) {
-            true -> "Brown"
-            else -> ""
-        } + " " + when (view?.findViewById<CheckBox>(R.id.yellowFurCheckBox)?.isChecked) {
-            true -> "Yellow"
-            else -> ""
-        }
+        val furColor = chosenFurColor
 
         return "Cat:\n $ribbed $breed with $furColor fur"
     }
