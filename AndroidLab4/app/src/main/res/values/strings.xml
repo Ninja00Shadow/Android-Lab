@@ -11,4 +11,14 @@
     <string name="list_fragment_header">List Fragment</string>
     <string name="list_item_name">Item Name</string>
     <string name="list_item_description">Item description</string>
+    <string name="main_title">Cities App</string>
+    <string name="app_creator">Dawid Walkiewicz</string>
+    <string name="edit_main_title">Edit main title</string>
+    <string name="title_text">Title</string>
+    <string name="description_text">Description</string>
+    <string name="edit_main_description">Edit main description</string>
+    <string name="start_screen_set_button">Set</string>
+    <string name="theme_1">Theme 1</string>
+    <string name="theme_2">Theme 2</string>
+    <string name="theme_options">Chose app theme</string>
 </resources>

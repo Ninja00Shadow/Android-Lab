@@ -1,5 +1,6 @@
 package com.example.androidlab4
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        applyTheme()
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -28,6 +31,16 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navigationView.setupWithNavController(navController)
+    }
+
+    private fun applyTheme() {
+        val data = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+        var theme = data.getInt("theme", 0)
+        when(theme) {
+            1 -> setTheme(R.style.Theme1)
+            2 -> setTheme(R.style.Theme2)
+            else -> setTheme(R.style.Theme_AndroidLab4)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

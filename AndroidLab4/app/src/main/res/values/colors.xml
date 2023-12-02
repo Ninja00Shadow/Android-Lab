@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="drawer_header">#5D08D6</color>
+
+    <color name="theme1_primary">#FF0000</color>
+    <color name="theme2_primary">#0000FF</color>
 </resources>

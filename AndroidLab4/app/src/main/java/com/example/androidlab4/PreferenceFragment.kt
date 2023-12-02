@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.androidlab4.databinding.FragmentSwipeBinding
+import androidx.core.os.bundleOf
+import com.example.androidlab4.databinding.FragmentPreferenceBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class SwipeFragment : Fragment() {
-    private lateinit var binding: FragmentSwipeBinding
+class PreferenceFragment : Fragment() {
+    private lateinit var binding: FragmentPreferenceBinding
     private lateinit var adapter: MyPager2Adapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,7 @@ class SwipeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding  = FragmentSwipeBinding.inflate(inflater, container, false)
+        binding  = FragmentPreferenceBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -46,10 +47,17 @@ class SwipeFragment : Fragment() {
         }
 
         tabLayoutMediator.attach()
+
+        childFragmentManager.setFragmentResultListener("startScreen", this) { _, bundle ->
+            val title = bundle.getString("title")
+            val description = bundle.getString("description")
+
+            parentFragmentManager.setFragmentResult("startScreen", bundleOf("title" to title, "description" to description))
+        }
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = SwipeFragment()
+        fun newInstance() = PreferenceFragment()
     }
 }
