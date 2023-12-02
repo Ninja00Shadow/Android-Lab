@@ -7,6 +7,7 @@
 
     <item
         android:id="@+id/listFragment"
+        android:icon="@drawable/ic_list"
         android:title="@string/list_fragment_menu" />
 
     <item

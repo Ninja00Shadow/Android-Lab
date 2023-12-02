@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidlab4.databinding.FragmentListBinding
@@ -35,20 +37,20 @@ class ListFragment : Fragment() {
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             holder.nameTextView.text = data[position].name
             holder.descriptionTextView.text = data[position].description
+            holder.icon.setImageResource(data[position].icon)
 
-            when (data[position].type) {
-                true -> holder.icon.setImageResource(R.drawable.ic_icon1)
-                false -> holder.icon.setImageResource(R.drawable.ic_icon2)
+            holder.itemView.setOnClickListener {
+                val bundle = bundleOf(
+                    "name" to data[position].name,
+                    "description" to data[position].description,
+                    "province" to data[position].province,
+                    "population" to data[position].population,
+                    "area" to data[position].area,
+                    "icon" to data[position].icon
+
+                )
+                findNavController().navigate(R.id.action_global_itemDetailsFragment, bundle)
             }
-
-//            holder.itemView.setOnClickListener {
-//                val bundle = bundleOf(
-//                    "name" to data[position].name,
-//                    "description" to data[position].description,
-//
-//                )
-////                findNavController().navigate(R.id.action_listFragment_to_detailsFragment, bundle)
-//            }
 
 
 

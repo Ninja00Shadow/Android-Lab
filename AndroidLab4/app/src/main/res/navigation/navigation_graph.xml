@@ -19,7 +19,14 @@
         android:id="@+id/listFragment"
         android:name="com.example.androidlab4.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/itemDetailsFragment"
+        android:name="com.example.androidlab4.ItemDetailsFragment"
+        android:label="fragment_item_details"
+        tools:layout="@layout/fragment_item_details" />
 
     <action
         android:id="@+id/action_global_mainFragment"
@@ -39,4 +46,11 @@
         app:destination="@id/listFragment"
         app:launchSingleTop="true"
         app:popUpTo="@id/mainFragment" />
+
+    <action
+        android:id="@+id/action_global_itemDetailsFragment"
+        app:destination="@id/itemDetailsFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/mainFragment" />
+
 </navigation>

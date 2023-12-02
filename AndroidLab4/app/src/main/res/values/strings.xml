@@ -21,4 +21,10 @@
     <string name="theme_1">Theme 1</string>
     <string name="theme_2">Theme 2</string>
     <string name="theme_options">Chose app theme</string>
+    <string name="item_title_text">Item title</string>
+    <string name="item_description_text">Item description</string>
+    <string name="item_province_text">Province</string>
+    <string name="item_population_text">Population</string>
+    <string name="item_area_text">Area</string>
+    <string name="return_button">Return</string>
 </resources>
