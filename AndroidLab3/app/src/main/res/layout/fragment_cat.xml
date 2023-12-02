@@ -73,36 +73,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/furColorTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:hint="@string/choose_fur_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/furColorTextView">
+        app:layout_constraintTop_toBottomOf="@id/furColorTextView">
 
-        <CheckBox
-            android:id="@+id/blackFurCheckBox"
-            android:layout_width="wrap_content"
+        <AutoCompleteTextView
+            android:id="@+id/furColorAutoCompleteTextView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fur_color_black" />
+            android:inputType="none" />
 
-        <CheckBox
-            android:id="@+id/brownFurCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fur_color_brown" />
-
-        <CheckBox
-            android:id="@+id/yellowFurCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fur_color_yellow" />
-    </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Switch
         android:id="@+id/ribbedSwitch"
@@ -113,7 +102,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/furColorTextInputLayout"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Button

@@ -48,7 +48,6 @@ class CatFragment : Fragment() {
         val catSubmitButton = view.findViewById<View>(R.id.catSubmitButton)
 
         catSubmitButton?.setOnClickListener {
-            Log.i("CatFragment","Cat button clicked")
             parentFragmentManager.setFragmentResult("messageFromChild", Bundle().apply {
                 putString("message", createCatMessage())
             })

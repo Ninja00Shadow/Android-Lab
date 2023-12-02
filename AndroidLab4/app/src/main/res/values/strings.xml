@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Android Lab 4</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_fragment_menu">Start</string>
+    <string name="list_fragment_menu">List of elements</string>
+    <string name="swipe_fragment_menu">Preferences</string>
+    <string name="drawer_header_text">Laboratory 4 application</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="list_fragment_header">List Fragment</string>
+    <string name="list_item_name">Item Name</string>
+    <string name="list_item_description">Item description</string>
 </resources>
