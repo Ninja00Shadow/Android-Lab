@@ -8,24 +8,27 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.androidlab4.MainFragment"
-        android:label="fragment_main"
+        android:label="Title screen"
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/swipeFragment"
         android:name="com.example.androidlab4.PreferenceFragment"
-        android:label="fragment_swipe"
+        android:label="Preferences"
         tools:layout="@layout/fragment_preference" />
     <fragment
         android:id="@+id/listFragment"
         android:name="com.example.androidlab4.ListFragment"
-        android:label="fragment_list"
-        tools:layout="@layout/fragment_list" >
+        android:label="List of cities"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_listFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/itemDetailsFragment"
         android:name="com.example.androidlab4.ItemDetailsFragment"
-        android:label="fragment_item_details"
+        android:label="City details"
         tools:layout="@layout/fragment_item_details" />
 
     <action
@@ -52,5 +55,14 @@
         app:destination="@id/itemDetailsFragment"
         app:launchSingleTop="true"
         app:popUpTo="@id/mainFragment" />
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.example.androidlab4.AddItemFragment"
+        android:label="Add CIty"
+        tools:layout="@layout/fragment_add_item">
+        <action
+            android:id="@+id/action_addItemFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
 
 </navigation>

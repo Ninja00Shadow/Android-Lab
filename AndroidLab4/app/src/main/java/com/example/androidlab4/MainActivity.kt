@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navigationView.setupWithNavController(navController)
+
     }
 
     private fun applyTheme() {

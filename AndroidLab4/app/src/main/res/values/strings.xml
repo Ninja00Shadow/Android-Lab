@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Android Lab 4</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Cities app</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="main_fragment_menu">Start</string>
     <string name="list_fragment_menu">List of elements</string>
@@ -27,4 +26,13 @@
     <string name="item_population_text">Population</string>
     <string name="item_area_text">Area</string>
     <string name="return_button">Return</string>
+    <string name="add_item_text">Add item</string>
+    <string name="item_name">City name</string>
+    <string name="item_description">City description</string>
+    <string name="item_province">Province</string>
+    <string name="item_population">Population</string>
+    <string name="item_area">Area</string>
+    <string name="item_icon">Choose city icon</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="save_button">Save</string>
 </resources>
