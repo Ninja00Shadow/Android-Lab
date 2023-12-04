@@ -11,7 +11,7 @@ import com.example.androidlab4.databinding.FragmentAddItemBinding
 
 class AddItemFragment : Fragment() {
     private lateinit var binding: FragmentAddItemBinding
-    private var icon = R.drawable.ic_launcher_foreground
+    private var icon = R.drawable.ic_new_city_1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +40,19 @@ class AddItemFragment : Fragment() {
             val name = binding.itemNameEditText.text.toString()
             val description = binding.itemDescriptionEditText.text.toString()
             val province = binding.itemProvinceEditText.text.toString()
-            val population = binding.itemPopulationEditText.text.toString().toInt()
-            val area = binding.itemAreaEditText.text.toString().toDouble()
+            var population = binding.itemPopulationEditText.text.toString()
+            if (population == "") {
+                population = "0"
+            }
+            val populationInt = population.toInt()
+            var area = binding.itemAreaEditText.text.toString()
+            if (area == "") {
+                area = "0.0"
+            }
+            val areaDouble = area.toDouble()
             val icon = this.icon
 
-            val item = DataItem(name, description, province, population, area, icon)
+            val item = DataItem(name, description, province, populationInt, areaDouble, icon)
             DataRepository.getInstance().addItem(item)
 
             findNavController().navigateUp()
