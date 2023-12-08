@@ -12,9 +12,7 @@ import com.example.androidlab4.databinding.FragmentItemDetailsBinding
 
 class ItemDetailsFragment : Fragment() {
     lateinit var binding: FragmentItemDetailsBinding
-    private var dataBundle: Bundle? = bundleOf("name" to "Krakow",
-        "description" to "Krakow is a city in Poland", "province" to "Lesser Poland",
-        "population" to 779115, "area" to 326.8, "icon" to R.drawable.ic_krakow)
+    private var dataBundle: Bundle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +37,7 @@ class ItemDetailsFragment : Fragment() {
         binding.itemDescription.text = dataBundle?.getString("description")
         binding.itemProvince.text = "Province: ${dataBundle?.getString("province")}"
         binding.itemPopulation.text = "Population: ${dataBundle?.getInt("population")}"
-        binding.itemArea.text = "Area: ${dataBundle?.getDouble("area")}"
+        binding.itemRating.rating = dataBundle?.getDouble("rating")!!.toFloat()
         binding.itemIcon.setImageResource(dataBundle?.getInt("icon")!!)
 
         binding.returnButton.setOnClickListener {
@@ -49,6 +47,6 @@ class ItemDetailsFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) = ItemDetailsFragment()
+        fun newInstance() = ItemDetailsFragment()
     }
 }

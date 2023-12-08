@@ -65,8 +65,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemProvinceEditText" />
 
-    <EditText
-        android:id="@+id/itemAreaEditText"
+    <RatingBar
+        android:id="@+id/itemRatingEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -84,45 +84,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/item_icon"
+        android:text="@string/item_size"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemAreaEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/itemRatingEdit" />
 
     <RadioGroup
-        android:id="@+id/itemIconRadioGroup"
+        android:id="@+id/itemSizeRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iconTextView">
 
         <RadioButton
-            android:id="@+id/itemIconType1"
+            android:id="@+id/itemSizeSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@string/small_city_text"
             android:checked="true"
-            android:drawableEnd="@drawable/ic_new_city_1"
             android:textSize="24sp" />
 
         <RadioButton
-            android:id="@+id/itemIconType2"
+            android:id="@+id/itemSizeAverage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:drawableEnd="@drawable/ic_new_city_2"
+            android:text="@string/average_city_text"
             android:textSize="24sp" />
 
         <RadioButton
-            android:id="@+id/itemIconType3"
+            android:id="@+id/itemSizeBig"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:drawableEnd="@drawable/ic_new_city_3"
+            android:text="@string/big_city_text"
             android:textSize="24sp" />
 
     </RadioGroup>
@@ -142,7 +139,7 @@
             android:id="@+id/saveButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="32dp"
+            android:layout_marginEnd="32dp"
             android:text="@string/save_button"
             android:textSize="20sp"
             tools:ignore="ButtonStyle" />
@@ -151,7 +148,7 @@
             android:id="@+id/cancelButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
             android:text="@string/cancel_button"
             android:textSize="20sp"
             tools:ignore="ButtonStyle" />

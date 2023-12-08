@@ -7,7 +7,7 @@
         android:id="@+id/itemIcon"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/ic_paris" />
+        android:src="@drawable/ic_average_city" />
 
     <LinearLayout
         android:layout_width="wrap_content"

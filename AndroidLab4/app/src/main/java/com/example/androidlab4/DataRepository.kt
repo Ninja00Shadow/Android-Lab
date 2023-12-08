@@ -1,16 +1,17 @@
 package com.example.androidlab4
 
 val list: MutableList<DataItem> = mutableListOf(
-    DataItem("Wroclaw", "Capital of Lower Silesia", "Lower Silesia", 631235, 292.82, R.drawable.ic_wroclaw),
-    DataItem("Warsaw", "Capital of Poland", "Masovian", 1790658, 517.24, R.drawable.ic_warsaw),
-    DataItem("Krakow", "Former capital of Poland", "Lesser Poland", 779115, 326.85, R.drawable.ic_krakow),
-    DataItem("Paris", "Capital of France", "Ile-de-France", 2148271, 105.4, R.drawable.ic_paris),
-    DataItem("London", "Capital of England", "Greater London", 8908081, 1572.0, R.drawable.ic_london),
-    DataItem("Rome", "Capital of Italy", "Lazio", 2872800, 1285.3, R.drawable.ic_rome),
+    DataItem("Wroclaw", "Capital of Lower Silesia", "Lower Silesia", 631235, 3.0, CitySize.AVERAGE),
+    DataItem("Oia", "Small town on Santorini", "South Aegean", 1545, 4.5, CitySize.SMALL),
+    DataItem("Hallstatt", "Small town in Austria", "Upper Austria", 859, 3.0, CitySize.SMALL),
+    DataItem("Valencia", "City in south-eastern Spain", "Valencian Community", 791413, 4.5, CitySize.AVERAGE),
+    DataItem("Portland", "City in Oregon", "Oregon", 654741, 3.5, CitySize.AVERAGE),
+    DataItem("Tokio", "Capital of Japan", "Tokyo", 9273000, 4.3, CitySize.BIG),
+    DataItem("New York", "City in New York", "New York", 8336817, 4.0, CitySize.BIG),
+    DataItem("Warsaw", "Capital of Poland", "Masovian", 1790658, 4.0, CitySize.BIG),
 )
 
 class DataRepository {
-    val LIST_SIZE = 15
     private var dataList : MutableList<DataItem> = mutableListOf()
 
     companion object{

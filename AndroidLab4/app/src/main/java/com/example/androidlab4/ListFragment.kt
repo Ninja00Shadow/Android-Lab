@@ -37,7 +37,6 @@ class ListFragment : Fragment() {
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             holder.nameTextView.text = data[position].name
             holder.descriptionTextView.text = data[position].description
-            holder.icon.setImageResource(data[position].icon)
 
             holder.itemView.setOnClickListener {
                 val bundle = bundleOf(
@@ -45,13 +44,17 @@ class ListFragment : Fragment() {
                     "description" to data[position].description,
                     "province" to data[position].province,
                     "population" to data[position].population,
-                    "area" to data[position].area,
-                    "icon" to data[position].icon
-
+                    "rating" to data[position].rating,
+                    "size" to data[position].size,
                 )
                 findNavController().navigate(R.id.action_global_itemDetailsFragment, bundle)
             }
 
+            when (data[position].size) {
+                CitySize.AVERAGE -> holder.icon.setImageResource(R.drawable.ic_average_city)
+                CitySize.SMALL -> holder.icon.setImageResource(R.drawable.ic_small_city)
+                CitySize.BIG -> holder.icon.setImageResource(R.drawable.ic_big_city)
+            }
 
 
 //            val dataRepository = DataRepository.getinstance()

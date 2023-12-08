@@ -11,7 +11,7 @@ import com.example.androidlab4.databinding.FragmentAddItemBinding
 
 class AddItemFragment : Fragment() {
     private lateinit var binding: FragmentAddItemBinding
-    private var icon = R.drawable.ic_new_city_1
+    private var size = CitySize.AVERAGE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +28,11 @@ class AddItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.itemIconRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+        binding.itemSizeRadioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.itemIconType1 -> icon = R.drawable.ic_new_city_1
-                R.id.itemIconType2 -> icon = R.drawable.ic_new_city_2
-                R.id.itemIconType3 -> icon = R.drawable.ic_new_city_3
+                R.id.itemSizeSmall -> size = CitySize.SMALL
+                R.id.itemSizeAverage -> size = CitySize.AVERAGE
+                R.id.itemSizeBig -> size = CitySize.BIG
             }
         }
 
@@ -45,14 +45,9 @@ class AddItemFragment : Fragment() {
                 population = "0"
             }
             val populationInt = population.toInt()
-            var area = binding.itemAreaEditText.text.toString()
-            if (area == "") {
-                area = "0.0"
-            }
-            val areaDouble = area.toDouble()
-            val icon = this.icon
+            val rating = binding.itemRatingEdit.rating.toDouble()
 
-            val item = DataItem(name, description, province, populationInt, areaDouble, icon)
+            val item = DataItem(name, description, province, populationInt, rating, size)
             DataRepository.getInstance().addItem(item)
 
             findNavController().navigateUp()

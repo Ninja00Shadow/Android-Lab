@@ -32,7 +32,10 @@
     <string name="item_province">Province</string>
     <string name="item_population">Population</string>
     <string name="item_area">Area</string>
-    <string name="item_icon">Choose city icon</string>
+    <string name="item_size">Choose city size</string>
     <string name="cancel_button">Cancel</string>
     <string name="save_button">Save</string>
+    <string name="small_city_text">Small city</string>
+    <string name="average_city_text">Average city</string>
+    <string name="big_city_text">Big city</string>
 </resources>
