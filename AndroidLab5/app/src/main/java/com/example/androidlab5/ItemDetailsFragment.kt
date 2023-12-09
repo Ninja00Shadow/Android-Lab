@@ -1,14 +1,15 @@
-package com.example.androidlab4
+package com.example.androidlab5
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
-import com.example.androidlab4.databinding.FragmentItemDetailsBinding
+import com.example.androidlab5.databinding.FragmentItemDetailsBinding
 
 class ItemDetailsFragment : Fragment() {
     lateinit var binding: FragmentItemDetailsBinding
@@ -42,6 +43,22 @@ class ItemDetailsFragment : Fragment() {
 
         binding.returnButton.setOnClickListener {
             findNavController().navigate(R.id.action_global_listFragment)
+        }
+
+        Log.d("ItemDetailsFragment", "onViewCreated: $dataBundle")
+
+        binding.modifyButton.setOnClickListener {
+            val bundle = bundleOf(
+                "id" to dataBundle?.getInt("id"),
+                "name" to dataBundle?.getString("name"),
+                "description" to dataBundle?.getString("description"),
+                "province" to dataBundle?.getString("province"),
+                "population" to dataBundle?.getInt("population"),
+                "rating" to dataBundle?.getDouble("rating"),
+                "size" to dataBundle?.getSerializable("size"),
+            )
+            Log.d("ItemDetailsFragment", "onModify: $bundle")
+            findNavController().navigate(R.id.action_itemDetailsFragment_to_addItemFragment, bundle)
         }
     }
 

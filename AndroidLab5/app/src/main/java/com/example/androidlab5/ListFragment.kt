@@ -1,4 +1,4 @@
-package com.example.androidlab4
+package com.example.androidlab5
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -13,14 +13,16 @@ import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidlab4.databinding.FragmentListBinding
-import com.example.androidlab4.databinding.ListRowBinding
+import com.example.androidlab5.databinding.FragmentListBinding
+import com.example.androidlab5.databinding.ListRowBinding
 
 class ListFragment : Fragment() {
-    lateinit var binding: FragmentListBinding
-    var dataRepository = DataRepository.getInstance().getData()
+    private lateinit var binding: FragmentListBinding
+    private lateinit var myRepository: MyRepository
+    private lateinit var adapter: MyAdapter
 
-    inner class MyAdapter(var data: MutableList<DataItem>) :
+
+    inner class MyAdapter(var data: MutableList<DBItem>) :
         RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
         inner class MyViewHolder(viewBinding : ListRowBinding) :
             RecyclerView.ViewHolder(viewBinding.root) {
@@ -40,6 +42,7 @@ class ListFragment : Fragment() {
 
             holder.itemView.setOnClickListener {
                 val bundle = bundleOf(
+                    "id" to data[position].id,
                     "name" to data[position].name,
                     "description" to data[position].description,
                     "province" to data[position].province,
@@ -47,6 +50,7 @@ class ListFragment : Fragment() {
                     "rating" to data[position].rating,
                     "size" to data[position].size,
                 )
+                Log.d("ListFragment", "onBindViewHolder: $bundle")
                 findNavController().navigate(R.id.action_global_itemDetailsFragment, bundle)
             }
 
@@ -64,7 +68,8 @@ class ListFragment : Fragment() {
                 builder.setTitle("Delete item")
                 builder.setMessage("Are you sure you want to delete this item?")
                 builder.setPositiveButton("Yes") { dialog, which ->
-                    if (DataRepository.getInstance().deleteItem(position)) {
+                    if (MyRepository.getInstance(requireContext()).deleteItem(data[position])) {
+                        data = MyRepository.getInstance(requireContext()).getData()!!
                         notifyDataSetChanged()
                     }
                 }
@@ -84,6 +89,9 @@ class ListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        myRepository = MyRepository.getInstance(requireContext())
+        adapter = MyAdapter(myRepository.getData()!!)
     }
 
     override fun onCreateView(
@@ -97,19 +105,25 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dataRepository = DataRepository.getInstance()
-
-        Log.d("ListFragment", "onViewCreated: ${dataRepository.getData()}")
-
-        val adapter = MyAdapter(dataRepository.getData())
-        binding.recyklerView.adapter = adapter
+        Log.d("ListFragment", "onViewCreated: ${myRepository.getData()}")
 
         binding.recyklerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyklerView.adapter = adapter
 
         Log.d("ListFragment", "recyclerView: ${adapter.itemCount}")
 
         binding.addItemButton.setOnClickListener { _ ->
-            findNavController().navigate(R.id.action_listFragment_to_addItemFragment)
+            findNavController().navigate(R.id.action_listFragment_to_addItemFragment, Bundle.EMPTY)
+        }
+
+        parentFragmentManager.setFragmentResultListener("itemAdded", viewLifecycleOwner) { _, _ ->
+            adapter.data = myRepository.getData()!!
+            adapter.notifyDataSetChanged()
+        }
+
+        parentFragmentManager.setFragmentResultListener("itemUpdated", viewLifecycleOwner) { _, _ ->
+            adapter.data = myRepository.getData()!!
+            adapter.notifyDataSetChanged()
         }
     }
 

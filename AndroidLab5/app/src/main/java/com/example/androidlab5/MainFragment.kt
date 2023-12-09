@@ -1,11 +1,11 @@
-package com.example.androidlab4
+package com.example.androidlab5
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.androidlab4.databinding.FragmentMainBinding
+import com.example.androidlab5.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding

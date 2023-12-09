@@ -38,4 +38,5 @@
     <string name="small_city_text">Small city</string>
     <string name="average_city_text">Average city</string>
     <string name="big_city_text">Big city</string>
+    <string name="modify_button">Modify</string>
 </resources>

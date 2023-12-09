@@ -1,4 +1,4 @@
-package com.example.androidlab4
+package com.example.androidlab5
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -9,14 +9,14 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.androidlab4.databinding.ActivityMainBinding
+import com.example.androidlab5.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
-    lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        applyTheme()
+//        applyTheme()
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -34,15 +34,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun applyTheme() {
-        val data = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-        var theme = data.getInt("theme", 0)
-        when(theme) {
-            1 -> setTheme(R.style.Theme1)
-            2 -> setTheme(R.style.Theme2)
-            else -> setTheme(R.style.Theme_AndroidLab4)
-        }
-    }
+//    private fun applyTheme() {
+//        val data = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+//        var theme = data.getInt("theme", 0)
+//        when(theme) {
+//            1 -> setTheme(R.style.Theme1)
+//            2 -> setTheme(R.style.Theme2)
+//            else -> setTheme(R.style.Theme_AndroidLab4)
+//        }
+//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val drawerToggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.drawer_open, R.string.drawer_close)

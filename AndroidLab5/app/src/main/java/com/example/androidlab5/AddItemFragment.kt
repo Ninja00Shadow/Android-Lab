@@ -1,20 +1,24 @@
-package com.example.androidlab4
+package com.example.androidlab5
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.androidlab4.databinding.FragmentAddItemBinding
+import com.example.androidlab5.databinding.FragmentAddItemBinding
 
 class AddItemFragment : Fragment() {
     private lateinit var binding: FragmentAddItemBinding
     private var size = CitySize.AVERAGE
+    private var dataBundle: Bundle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        dataBundle = arguments
     }
 
     override fun onCreateView(
@@ -27,6 +31,33 @@ class AddItemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (dataBundle != null) {
+            binding.itemNameEditText.setText(dataBundle?.getString("name"))
+            binding.itemDescriptionEditText.setText(dataBundle?.getString("description"))
+            binding.itemProvinceEditText.setText(dataBundle?.getString("province"))
+            binding.itemPopulationEditText.setText(dataBundle?.getInt("population").toString())
+            binding.itemRatingEdit.rating = dataBundle?.getDouble("rating")!!.toFloat()
+            size = dataBundle?.getSerializable("size") as CitySize
+
+            when (size) {
+                CitySize.SMALL -> {
+                    binding.itemSizeSmall.isChecked = true
+                    binding.itemSizeAverage.isChecked = false
+                    binding.itemSizeBig.isChecked = false
+                }
+                CitySize.AVERAGE -> {
+                    binding.itemSizeSmall.isChecked = false
+                    binding.itemSizeAverage.isChecked = true
+                    binding.itemSizeBig.isChecked = false
+                }
+                CitySize.BIG -> {
+                    binding.itemSizeSmall.isChecked = false
+                    binding.itemSizeAverage.isChecked = false
+                    binding.itemSizeBig.isChecked = true
+                }
+            }
+        }
 
         binding.itemSizeRadioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
@@ -47,9 +78,19 @@ class AddItemFragment : Fragment() {
             val populationInt = population.toInt()
             val rating = binding.itemRatingEdit.rating.toDouble()
 
-            val item = DataItem(name, description, province, populationInt, rating, size)
-            DataRepository.getInstance().addItem(item)
+            if (dataBundle != null) {
+                val item = DBItem(name, description, province, populationInt, rating, size)
+                item.id = dataBundle?.getInt("id")!!
 
+                if (MyRepository.getInstance(requireContext()).modifyItem(item))
+                    parentFragmentManager.setFragmentResult("itemUpdated", Bundle.EMPTY)
+            }
+            else {
+                val item = DBItem(name, description, province, populationInt, rating, size)
+
+                if (MyRepository.getInstance(requireContext()).addItem(item))
+                    parentFragmentManager.setFragmentResult("itemAdded", Bundle.EMPTY)
+            }
             findNavController().navigateUp()
         }
 
@@ -58,7 +99,8 @@ class AddItemFragment : Fragment() {
             builder.setTitle("Cancel")
             builder.setMessage("Are you sure you want to cancel?")
             builder.setPositiveButton("Yes") { _, _ ->
-                findNavController().navigateUp()
+//                findNavController().navigateUp()
+                requireActivity().onBackPressed()
             }
             builder.setNegativeButton("No") { _, _ -> }
             builder.show()
