@@ -11,7 +11,7 @@
         android:title="@string/list_fragment_menu" />
 
     <item
-        android:id="@+id/swipeFragment"
+        android:id="@+id/imageSwipeFragment"
         android:icon="@drawable/ic_preferences"
         android:title="@string/swipe_fragment_menu" />
 

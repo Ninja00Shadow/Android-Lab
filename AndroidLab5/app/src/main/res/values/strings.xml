@@ -39,4 +39,6 @@
     <string name="average_city_text">Average city</string>
     <string name="big_city_text">Big city</string>
     <string name="modify_button">Modify</string>
+    <string name="image_gallery">Starting image</string>
+    <string name="set_image_text">Set image</string>
 </resources>

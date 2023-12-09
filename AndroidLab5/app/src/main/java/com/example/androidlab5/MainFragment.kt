@@ -1,5 +1,7 @@
 package com.example.androidlab5
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,6 +27,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        applyImage()
+
         parentFragmentManager.setFragmentResultListener("startScreen", this) { _, bundle ->
             val title = bundle.getString("title")
             val description = bundle.getString("description")
@@ -32,6 +36,27 @@ class MainFragment : Fragment() {
             binding.mainTitle.text = title
             binding.mainDescription.text = description
         }
+
+        parentFragmentManager.setFragmentResultListener("image", this) { _, bundle ->
+            val image = bundle.getInt("image")
+            saveImage(image)
+            applyImage()
+        }
+    }
+
+    private fun applyImage() {
+        val data : SharedPreferences = requireActivity().getSharedPreferences("image", Context.MODE_PRIVATE)
+        val image = data.getInt("image", R.drawable.wroclaw)
+
+        binding.mainImage.setImageResource(image)
+    }
+
+    fun saveImage(image: Int) {
+        val data : SharedPreferences = requireActivity().getSharedPreferences("image", Context.MODE_PRIVATE)
+
+        val editor : SharedPreferences.Editor = data.edit()
+        editor.putInt("image", image)
+        editor.apply()
     }
 
     companion object {
