@@ -91,7 +91,7 @@ class AddItemFragment : Fragment() {
                 if (MyRepository.getInstance(requireContext()).addItem(item))
                     parentFragmentManager.setFragmentResult("itemAdded", Bundle.EMPTY)
             }
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_global_listFragment)
         }
 
         binding.cancelButton.setOnClickListener {

@@ -60,6 +60,8 @@ class ItemDetailsFragment : Fragment() {
             Log.d("ItemDetailsFragment", "onModify: $bundle")
             findNavController().navigate(R.id.action_itemDetailsFragment_to_addItemFragment, bundle)
         }
+
+//        parentFragmentManager.setFragmentResultListener()
     }
 
     companion object {

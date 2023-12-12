@@ -113,7 +113,7 @@ class ListFragment : Fragment() {
         Log.d("ListFragment", "recyclerView: ${adapter.itemCount}")
 
         binding.addItemButton.setOnClickListener { _ ->
-            findNavController().navigate(R.id.action_listFragment_to_addItemFragment, Bundle.EMPTY)
+            findNavController().navigate(R.id.action_listFragment_to_addItemFragment, null)
         }
 
         parentFragmentManager.setFragmentResultListener("itemAdded", viewLifecycleOwner) { _, _ ->
