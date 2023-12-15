@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/startFragment"
+            android:title="@string/start_fragment" />
+
+    <item
+            android:id="@+id/photoListFragment"
+            android:title="@string/photo_list_fragment" />
+
+    <item
+            android:id="@+id/takePhotoFragment"
+            android:title="@string/take_photo_fragment" />
+
+</menu>
