@@ -4,6 +4,7 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -57,9 +58,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val drawerToggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.drawer_open, R.string.drawer_close)
+
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true
         }
+
+        when (item.itemId) {
+            R.id.shared_storage -> {
+                DataRepo.getinstance(this).setStorageType(DataRepo.SHARED_STORAGE)
+            }
+            R.id.private_storage -> {
+                DataRepo.getinstance(this).setStorageType(DataRepo.PRIVATE_STORAGE)
+            }
+        }
+
         return super.onOptionsItemSelected(item)
     }
 
@@ -87,5 +99,12 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.storage_menu, menu)
+
+        return true
     }
 }

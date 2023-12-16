@@ -1,59 +1,117 @@
 package com.example.androidlab6
 
+import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
+import com.example.androidlab6.databinding.FragmentTakePhotoBinding
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TakePhotoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TakePhotoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentTakePhotoBinding
+    private lateinit var lastFile: File
+    private lateinit var lastFileUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_take_photo, container, false)
+    ): View {
+        binding = FragmentTakePhotoBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val photoPreviewLauncher =
+            registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { result: Bitmap? ->
+                if (result != null) {
+                    Toast.makeText(requireContext(), "PREVIEW RECEIVED", Toast.LENGTH_LONG).show()
+                    binding.imageView.setImageBitmap(result)
+                } else {
+                    Toast.makeText(requireContext(), "PREVIEW NOT RECEIVED", Toast.LENGTH_LONG)
+                        .show()
+                }
+            }
+
+        binding.cameraPreviewButton.setOnClickListener {
+            try {
+                photoPreviewLauncher.launch(null)
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "PREVIEW LAUNCHER FAILED", Toast.LENGTH_LONG)
+                    .show()
+            }
+            binding.imageView.visibility = View.VISIBLE
+        }
+
+        val photoLauncher =
+            registerForActivityResult(ActivityResultContracts.TakePicture()) { result: Boolean ->
+                if (result) {
+                    // consume result - see later remarks
+                    Toast.makeText(requireContext(), "Photo TAKEN", Toast.LENGTH_LONG).show()
+                    binding.imageView.setImageURI(lastFileUri)
+                } else {
+                    // make some action – warning
+                    Toast.makeText(requireContext(), "Photo NOT taken!", Toast.LENGTH_LONG).show()
+                    lastFile.delete()
+                }
+            }
+
+        binding.cameraTakePhotoButton.setOnClickListener {
+            lastFileUri = getNewFileUri()
+            try {
+                photoLauncher.launch(lastFileUri)
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(requireContext(),"CAMERA DOESN'T WORK!", Toast.LENGTH_LONG).show()
+            }
+            binding.imageView.visibility = View.VISIBLE
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun getNewFileUri(): Uri {
+        val tStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+
+        val dataRepo = DataRepo.getinstance(requireContext())
+
+        val dir = when (dataRepo.getStorageType()) {
+            DataRepo.SHARED_STORAGE -> {
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            }
+
+            DataRepo.PRIVATE_STORAGE -> {
+                requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
+            }
+
+            else -> return MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        }
+
+
+        val tmpFile = File.createTempFile("Photo_$tStamp", ".jpg", dir)
+        lastFile = tmpFile //save File for future use
+        return FileProvider.getUriForFile(requireContext(),
+            "com.example.androidlab6.provider",
+            tmpFile)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TakePhotoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TakePhotoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance() = TakePhotoFragment()
     }
 }

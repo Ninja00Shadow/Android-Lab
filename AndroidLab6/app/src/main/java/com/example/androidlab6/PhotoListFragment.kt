@@ -29,7 +29,15 @@ class PhotoListFragment : Fragment() {
 
         val dataRepo = DataRepo.getinstance(requireContext())
 
-        val adapter = dataRepo.getSharedList()?.let { PhotoListAdapter(requireContext(), it) }
+        var adapter : PhotoListAdapter? = null
+        when (dataRepo.getStorageType()) {
+            DataRepo.SHARED_STORAGE -> {
+                adapter = dataRepo.getSharedList()?.let { PhotoListAdapter(requireContext(), it) }
+            }
+            DataRepo.PRIVATE_STORAGE -> {
+                adapter = dataRepo.getAppList()?.let { PhotoListAdapter(requireContext(), it) }
+            }
+        }
         if (adapter == null) {
             Toast.makeText(requireContext(), "Invalid Data", Toast.LENGTH_LONG).show()
             requireActivity().onBackPressed()
