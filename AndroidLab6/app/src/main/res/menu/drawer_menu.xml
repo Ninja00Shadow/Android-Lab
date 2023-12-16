@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/startFragment"
-            android:title="@string/start_fragment" />
+        android:id="@+id/mainFragment"
+        android:icon="@drawable/main_icon"
+        android:title="@string/main_fragment_menu" />
 
     <item
-            android:id="@+id/photoListFragment"
-            android:title="@string/photo_list_fragment" />
+        android:id="@+id/listFragment"
+        android:icon="@drawable/ic_list"
+        android:title="@string/list_fragment_menu" />
 
     <item
-            android:id="@+id/takePhotoFragment"
-            android:title="@string/take_photo_fragment" />
+        android:id="@+id/imageSwipeFragment"
+        android:icon="@drawable/ic_preferences"
+        android:title="@string/swipe_fragment_menu" />
 
 </menu>

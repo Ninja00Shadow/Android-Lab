@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout7"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddItemFragment">
+
+    <EditText
+        android:id="@+id/itemNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="@string/item_name"
+        android:inputType="text"
+        android:textSize="24sp"
+        android:autofillHints=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/itemDescriptionEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/item_description"
+        android:inputType="textMultiLine"
+        android:lines="1"
+        android:maxLines="3"
+        android:textSize="24sp"
+        android:autofillHints=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemNameEditText" />
+
+    <EditText
+        android:id="@+id/itemProvinceEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/item_province"
+        android:inputType="text"
+        android:textSize="24sp"
+        android:autofillHints=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemDescriptionEditText" />
+
+    <EditText
+        android:id="@+id/itemPopulationEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/item_population"
+        android:inputType="number"
+        android:textSize="24sp"
+        android:autofillHints=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemProvinceEditText" />
+
+    <RatingBar
+        android:id="@+id/itemRatingEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/item_area"
+        android:inputType="numberDecimal"
+        android:textSize="24sp"
+        android:autofillHints=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemPopulationEditText" />
+
+    <TextView
+        android:id="@+id/iconTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/item_size"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemRatingEdit" />
+
+    <RadioGroup
+        android:id="@+id/itemSizeRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconTextView">
+
+        <RadioButton
+            android:id="@+id/itemSizeSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/small_city_text"
+            android:checked="true"
+            android:textSize="24sp" />
+
+        <RadioButton
+            android:id="@+id/itemSizeAverage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/average_city_text"
+            android:textSize="24sp" />
+
+        <RadioButton
+            android:id="@+id/itemSizeBig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/big_city_text"
+            android:textSize="24sp" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="@string/save_button"
+            android:textSize="20sp"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/cancel_button"
+            android:textSize="20sp"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

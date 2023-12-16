@@ -3,21 +3,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/startFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/startFragment"
-        android:name="com.example.androidlab6.StartFragment"
-        android:label="@string/start_fragment"
-        tools:layout="@layout/fragment_start" />
+        android:id="@+id/mainFragment"
+        android:name="com.example.androidlab6.MainFragment"
+        android:label="Title screen"
+        tools:layout="@layout/fragment_main" />
+
     <fragment
-        android:id="@+id/photoListFragment"
-        android:name="com.example.androidlab6.PhotoListFragment"
-        android:label="@string/photo_list_fragment"
-        tools:layout="@layout/fragment_photo_list" />
+        android:id="@+id/imageSwipeFragment"
+        android:name="com.example.androidlab6.ImageSwipeFragment"
+        android:label="Preferences"
+        tools:layout="@layout/fragment_image_swipe" />
+
     <fragment
-        android:id="@+id/takePhotoFragment"
-        android:name="com.example.androidlab6.TakePhotoFragment"
-        android:label="@string/take_photo_fragment"
-        tools:layout="@layout/fragment_take_photo" />
+        android:id="@+id/listFragment"
+        android:name="com.example.androidlab6.ListFragment"
+        android:label="List of cities"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_listFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/itemDetailsFragment"
+        android:name="com.example.androidlab6.ItemDetailsFragment"
+        android:label="City details"
+        tools:layout="@layout/fragment_item_details" >
+        <action
+            android:id="@+id/action_itemDetailsFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.example.androidlab6.AddItemFragment"
+        android:label="Add CIty"
+        tools:layout="@layout/fragment_add_item">
+        <action
+            android:id="@+id/action_addItemFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_mainFragment"
+        app:destination="@id/mainFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/mainFragment"
+        app:popUpToInclusive="false" />
+
+    <action
+        android:id="@+id/action_global_listFragment"
+        app:destination="@id/listFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/mainFragment" />
+
+    <action
+        android:id="@+id/action_global_itemDetailsFragment"
+        app:destination="@id/itemDetailsFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/mainFragment" />
+
+    <action
+        android:id="@+id/action_global_imageSwipeFragment"
+        app:destination="@id/imageSwipeFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/mainFragment" />
+
 </navigation>

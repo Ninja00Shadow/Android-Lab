@@ -6,9 +6,9 @@
 
     <ImageView
         android:id="@+id/itemIcon"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:src="@drawable/ic_launcher_background"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_average_city"
         tools:ignore="ContentDescription" />
 
     <LinearLayout
@@ -21,22 +21,15 @@
             android:id="@+id/itemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/placeholder_text"
+            android:text="@string/list_item_name"
             android:textStyle="bold"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/itemUri"
+            android:id="@+id/itemDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/placeholder_text"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/itemCuri"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/placeholder_text"
+            android:text="@string/list_item_description"
             android:textSize="16sp" />
     </LinearLayout>
 
