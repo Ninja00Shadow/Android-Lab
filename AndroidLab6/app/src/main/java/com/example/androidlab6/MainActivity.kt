@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -23,15 +24,13 @@ class MainActivity : AppCompatActivity() {
     private val REQUIRED_PERMISSIONS = mutableListOf (
         android.Manifest.permission.CAMERA,
         android.Manifest.permission.RECORD_AUDIO,
+        android.Manifest.permission.READ_EXTERNAL_STORAGE,
     ).apply {
         if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.P) {
             add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
         }
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
             add(android.Manifest.permission.READ_MEDIA_IMAGES)
-        }
-        if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.P) {
-            add(android.Manifest.permission.READ_EXTERNAL_STORAGE)
         }
     }.toTypedArray()
 
@@ -63,14 +62,14 @@ class MainActivity : AppCompatActivity() {
             return true
         }
 
-        when (item.itemId) {
-            R.id.shared_storage -> {
-                DataRepo.getinstance(this).setStorageType(DataRepo.SHARED_STORAGE)
-            }
-            R.id.private_storage -> {
-                DataRepo.getinstance(this).setStorageType(DataRepo.PRIVATE_STORAGE)
-            }
-        }
+//        when (item.itemId) {
+//            R.id.shared_storage -> {
+//                DataRepo.getinstance(this).setStorageType(DataRepo.SHARED_STORAGE)
+//            }
+//            R.id.private_storage -> {
+//                DataRepo.getinstance(this).setStorageType(DataRepo.PRIVATE_STORAGE)
+//            }
+//        }
 
         return super.onOptionsItemSelected(item)
     }
@@ -87,11 +86,6 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        Log.d("MainActivity", "onRequestPermissionsResult")
-        Log.d("MainActivity", "requestCode: $requestCode")
-        Log.d("MainActivity", "permissions: ${permissions.joinToString()}")
-        Log.d("MainActivity", "grantResults: ${grantResults.joinToString()}")
-        Log.d("MainActivity", "allPermissionsGranted: ${REQUIRED_PERMISSIONS.joinToString()}")
 
         if (requestCode == REQUEST_CODE) {
             if (!allPermissionsGranted()) {
@@ -101,10 +95,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.storage_menu, menu)
-
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        val inflater = menuInflater
+//        inflater.inflate(R.menu.storage_menu, menu)
+//
+//        return true
+//    }
 }

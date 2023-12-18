@@ -11,20 +11,21 @@ import android.util.Log
 import androidx.core.content.FileProvider
 import java.io.File
 
-class DataRepo {
+class ImageRepo {
     lateinit var uri: Uri
 
-    fun getSharedList(): MutableList<DataItem>? {
-        var uri: Uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+    @SuppressLint("Recycle")
+    fun getSharedList(): MutableList<ImageItem>? {
+        val uri: Uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         val contentResolver: ContentResolver = ctx.contentResolver
 
         sharedStoreList?.clear()
 
         val cursor = contentResolver.query(uri, null, null, null, null);
         if (cursor == null) {
-            Log.e("DataRepo", "Cursor is null")
+            Log.e("ImageRepo", "Cursor is null")
         } else if (!cursor.moveToFirst()) {
-            Log.e("DataRepo", "Cursor is empty")
+            Log.e("ImageRepo", "Cursor is empty")
         } else {
             val idColumn = cursor.getColumnIndex(MediaStore.Images.Media._ID)
             val nameColumn = cursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME)
@@ -34,13 +35,21 @@ class DataRepo {
 
                 var thisContentUri = ContentUris.withAppendedId(uri, thisId)
                 var thisUriPath = thisContentUri.toString()
-                sharedStoreList?.add(DataItem(thisName, thisUriPath, "No path yet", thisContentUri))
+                sharedStoreList?.add(
+                    ImageItem(
+                        thisName,
+                        thisUriPath,
+                        "No path yet",
+                        thisContentUri
+                    )
+                )
             } while (cursor.moveToNext());
         }
+        cursor?.close()
         return sharedStoreList
     }
 
-    fun setStorageType(storage:Int) : Boolean {
+    fun setStorageType(storage: Int): Boolean {
         if (storage != SHARED_STORAGE && storage != PRIVATE_STORAGE)
             return false
         else {
@@ -48,12 +57,13 @@ class DataRepo {
         }
         return true
     }
+
     fun getStorageType(): Int {
         return photo_storage_type
     }
 
-    fun getAppList() : MutableList<DataItem>? {
-        val dir : File? = ctx.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+    fun getAppList(): MutableList<ImageItem>? {
+        val dir: File? = ctx.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         dir?.listFiles()
         appStoreList?.clear()
         if (dir?.isDirectory() == true) {
@@ -62,11 +72,18 @@ class DataRepo {
                 for (value in fileList) {
                     var fileName = value.name
                     if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") ||
-                        fileName.endsWith(".png") || fileName.endsWith(".gif")) {
-                        val tmpUri = FileProvider.getUriForFile(ctx,
-                            "com.example.androidlab6.provider", value)
-                        appStoreList?.add(DataItem(fileName, value.toURI().path,
-                            value.absolutePath, tmpUri))
+                        fileName.endsWith(".png") || fileName.endsWith(".gif")
+                    ) {
+                        val tmpUri = FileProvider.getUriForFile(
+                            ctx,
+                            "com.example.androidlab6.provider", value
+                        )
+                        appStoreList?.add(
+                            ImageItem(
+                                fileName, value.toURI().path,
+                                value.absolutePath, tmpUri
+                            )
+                        )
                     }
                 }
             }
@@ -76,23 +93,24 @@ class DataRepo {
 
     companion object {
         @SuppressLint("StaticFieldLeak")
-        private var INSTANCE: DataRepo? = null
+        private var INSTANCE: ImageRepo? = null
+
         @SuppressLint("StaticFieldLeak")
         private lateinit var ctx: Context
-        private var sharedStoreList: MutableList<DataItem>? = null
-        private var appStoreList: MutableList<DataItem>? = null
+        private var sharedStoreList: MutableList<ImageItem>? = null
+        private var appStoreList: MutableList<ImageItem>? = null
 
         const val SHARED_STORAGE = 1
         const val PRIVATE_STORAGE = 2
         var photo_storage_type = SHARED_STORAGE
-        fun getinstance(ctx: Context): DataRepo {
+        fun getinstance(ctx: Context): ImageRepo {
             if (INSTANCE == null) {
-                INSTANCE = DataRepo()
+                INSTANCE = ImageRepo()
                 sharedStoreList = mutableListOf()
                 appStoreList = mutableListOf()
                 this.ctx = ctx
             }
-            return INSTANCE as DataRepo
+            return INSTANCE as ImageRepo
         }
     }
 }

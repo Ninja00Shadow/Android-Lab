@@ -50,4 +50,6 @@
     <string name="modify_button">Modify</string>
     <string name="image_gallery">Starting image</string>
     <string name="set_image_text">Set image</string>
+    <string name="photo_list_menu">Images</string>
+    <string name="take_photo">Take Photo</string>
 </resources>

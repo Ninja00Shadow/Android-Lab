@@ -42,13 +42,39 @@ class MainFragment : Fragment() {
             saveImage(image)
             applyImage()
         }
+
+        parentFragmentManager.setFragmentResultListener("imageUri", this) { _, bundle ->
+            val uri = bundle.getParcelable("uri") as? android.net.Uri
+            saveImage(uri)
+            applyImage()
+        }
+
+        binding.sharedStorageRadioButton.setOnClickListener {
+            val dataRepo = ImageRepo.getinstance(requireContext())
+            dataRepo.setStorageType(ImageRepo.SHARED_STORAGE)
+        }
+
+        binding.privateStorageRadioButton.setOnClickListener {
+            val dataRepo = ImageRepo.getinstance(requireContext())
+            dataRepo.setStorageType(ImageRepo.PRIVATE_STORAGE)
+        }
     }
 
     private fun applyImage() {
-        val data : SharedPreferences = requireActivity().getSharedPreferences("image", Context.MODE_PRIVATE)
-        val image = data.getInt("image", R.drawable.wroclaw)
+//        val data : SharedPreferences = requireActivity().getSharedPreferences("image", Context.MODE_PRIVATE)
+//        val image = data.getInt("image", R.drawable.wroclaw)
+//
+//        binding.mainImage.setImageResource(image)
 
-        binding.mainImage.setImageResource(image)
+        val data : SharedPreferences = requireActivity().getSharedPreferences("uri", Context.MODE_PRIVATE)
+        val uri = data.getString("uri", null)
+
+        if (uri != null) {
+            binding.mainImage.setImageURI(android.net.Uri.parse(uri))
+        }
+        else {
+            binding.mainImage.setImageResource(R.drawable.wroclaw)
+        }
     }
 
     fun saveImage(image: Int) {
@@ -56,6 +82,14 @@ class MainFragment : Fragment() {
 
         val editor : SharedPreferences.Editor = data.edit()
         editor.putInt("image", image)
+        editor.apply()
+    }
+
+    fun saveImage(uri: android.net.Uri?) {
+        val data : SharedPreferences = requireActivity().getSharedPreferences("uri", Context.MODE_PRIVATE)
+
+        val editor : SharedPreferences.Editor = data.edit()
+        editor.putString("uri", uri.toString())
         editor.apply()
     }
 

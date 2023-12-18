@@ -88,14 +88,14 @@ class TakePhotoFragment : Fragment() {
     private fun getNewFileUri(): Uri {
         val tStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
 
-        val dataRepo = DataRepo.getinstance(requireContext())
+        val dataRepo = ImageRepo.getinstance(requireContext())
 
         val dir = when (dataRepo.getStorageType()) {
-            DataRepo.SHARED_STORAGE -> {
+            ImageRepo.SHARED_STORAGE -> {
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
             }
 
-            DataRepo.PRIVATE_STORAGE -> {
+            ImageRepo.PRIVATE_STORAGE -> {
                 requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
             }
 

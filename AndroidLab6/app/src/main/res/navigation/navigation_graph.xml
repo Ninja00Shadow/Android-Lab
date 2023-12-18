@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_main" />
 
     <fragment
-        android:id="@+id/imageSwipeFragment"
-        android:name="com.example.androidlab6.ImageSwipeFragment"
-        android:label="Preferences"
-        tools:layout="@layout/fragment_image_swipe" />
+        android:id="@+id/photoListFragment"
+        android:name="com.example.androidlab6.PhotoListFragment"
+        android:label="Images"
+        tools:layout="@layout/fragment_photo_list" />
 
     <fragment
         android:id="@+id/listFragment"
@@ -67,9 +67,15 @@
         app:popUpTo="@id/mainFragment" />
 
     <action
-        android:id="@+id/action_global_imageSwipeFragment"
-        app:destination="@id/imageSwipeFragment"
+        android:id="@+id/action_global_photoListFragment"
+        app:destination="@id/photoListFragment"
         app:launchSingleTop="true"
         app:popUpTo="@id/mainFragment" />
+    <fragment
+        android:id="@+id/imageSwipeFragment"
+        android:name="com.example.androidlab6.ImageSwipeFragment"
+        android:label="Start image"
+        tools:layout="@layout/fragment_image_swipe" />
+    <action android:id="@+id/action_global_imageSwipeFragment" app:destination="@id/imageSwipeFragment" />
 
 </navigation>
