@@ -77,5 +77,10 @@
         android:label="Start image"
         tools:layout="@layout/fragment_image_swipe" />
     <action android:id="@+id/action_global_imageSwipeFragment" app:destination="@id/imageSwipeFragment" />
+    <fragment
+        android:id="@+id/takePhotoFragment"
+        android:name="com.example.androidlab6.TakePhotoFragment"
+        android:label="fragment_take_photo"
+        tools:layout="@layout/fragment_take_photo" />
 
 </navigation>
